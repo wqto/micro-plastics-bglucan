@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイクロプラスチック解説資料</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #1a1a1a;
+            color: #333;
+        }
+        /* 16:9 Aspect Ratio Container for YouTube */
+        .slide-container {
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* Specific Slide Styles */
+        .highlight-text {
+            background: linear-gradient(transparent 60%, #ffff00 60%);
+        }
+        .danger-text {
+            color: #dc2626;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Control Panel -->
+    <div class="mb-4 flex gap-4 text-white">
+        <button onclick="prevSlide()" class="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-full font-bold transition"><i class="fas fa-arrow-left"></i> 前へ</button>
+        <span id="slide-indicator" class="flex items-center text-xl font-bold">1 / 9</span>
+        <button onclick="nextSlide()" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 rounded-full font-bold transition">次へ <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+    <!-- Main Slide Container -->
+    <div class="slide-container rounded-xl" id="slide-viewer">
+
+        <!-- Slide 1: Introduction -->
+        <div class="slide active bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+            <div class="text-center">
+                <p class="text-3xl font-bold text-yellow-400 mb-4">その「なんとなく不調」</p>
+                <h1 class="text-6xl font-black leading-tight mb-8">
+                    原因は<br>
+                    <span class="text-red-500">肺</span>と<span class="text-red-500">血液</span>の<br>
+                    汚れかも？
+                </h1>
+                <div class="flex justify-center gap-8 mt-8 opacity-80">
+                    <div class="flex flex-col items-center">
+                        <i class="fas fa-head-side-mask text-5xl mb-2"></i>
+                        <span>取れない疲れ</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <i class="fas fa-allergies text-5xl mb-2"></i>
+                        <span>謎の肌荒れ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Shocking Fact (Lungs) -->
+        <div class="slide bg-white">
+            <h2 class="absolute top-8 left-8 text-3xl font-bold border-l-8 border-blue-600 pl-4">衝撃の研究結果</h2>
+            <div class="flex flex-col items-center w-full">
+                <div class="flex items-center gap-8 mb-4">
+                    <div class="relative">
+                        <i class="fas fa-lungs text-9xl text-blue-200"></i>
+                        <i class="fas fa-search text-6xl text-gray-600 absolute -bottom-2 -right-2"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-2xl font-bold text-gray-500">肺組織の検査</p>
+                        <p class="text-8xl font-black text-red-600">40<span class="text-4xl text-black">人中</span>/40<span class="text-4xl text-black">人</span></p>
+                        <p class="text-4xl font-bold mt-2 bg-red-100 inline-block px-2 text-red-600">全員から検出</p>
+                    </div>
+                </div>
+                <p class="text-xl text-gray-600 mt-8 font-bold text-center border-2 border-gray-300 p-4 rounded-lg bg-gray-50">
+                    <br>
+                    <span class="text-sm font-normal">※イメージ：色とりどりの微粒子が肺にある様子</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Blood & Inflammation -->
+        <div class="slide bg-red-50">
+            <h2 class="absolute top-8 left-8 text-3xl font-bold border-l-8 border-red-600 pl-4">体内で起きていること</h2>
+            <div class="flex w-full h-full items-center justify-center gap-12">
+                <div class="text-center w-1/2">
+                    <i class="fas fa-fire-alt text-red-500 text-9xl mb-4 animate-pulse"></i>
+                    <h3 class="text-5xl font-black text-red-600">慢性炎症</h3>
+                </div>
+                <div class="text-left w-1/2 space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg border-l-8 border-red-500">
+                        <p class="text-xl font-bold text-gray-500">研究データ</p>
+                        <p class="text-3xl font-bold mt-2">
+                            プラスチック濃度 <i class="fas fa-arrow-up text-red-500"></i><br>
+                            ＝ 炎症数値(CRP) <i class="fas fa-arrow-up text-red-500"></i>
+                        </p>
+                    </div>
+                    <p class="text-2xl font-bold text-gray-700">
+                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>動脈硬化のリスク増
+                    </p>
+                    <p class="text-2xl font-bold text-gray-700">
+                        <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>免疫系の暴走
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Nano-plastics & Brain -->
+        <div class="slide bg-gray-100">
+            <h2 class="absolute top-8 left-8 text-3xl font-bold border-l-8 border-purple-600 pl-4">さらに怖い「ナノ」の世界</h2>
+            <div class="flex flex-col items-center">
+                <div class="relative mb-8">
+                    <i class="fas fa-brain text-9xl text-purple-300"></i>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-bolt text-5xl text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-5xl font-black mb-6">脳への侵入</h3>
+                <div class="grid grid-cols-2 gap-6 w-full max-w-4xl">
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <p class="text-2xl font-bold text-purple-700">神経炎症</p>
+                        <p class="text-lg text-gray-500">認知機能・メンタル不調</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow text-center">
+                        <p class="text-2xl font-bold text-pink-600">環境ホルモン</p>
+                        <p class="text-lg text-gray-500">生理不順・代謝異常</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Route 1 - Heat -->
+        <div class="slide bg-orange-50">
+            <h2 class="absolute top-8 left-8 text-3xl font-bold border-l-8 border-orange-600 pl-4">侵入ルート①：熱</h2>
+            <div class="flex flex-col items-center justify-center h-full">
+                <div class="text-7xl font-black text-orange-600 mb-8">熱 × プラ ＝ <span class="text-black">溶け出す</span></div>
+                <div class="flex justify-center gap-8 w-full">
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center w-1/3 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 bg-red-500 text-white px-3 py-1 font-bold text-sm">NG</div>
+                        <i class="fas fa-box-open text-6xl text-gray-400 mb-4"></i>
+                        <p class="text-2xl font-bold">コンビニ弁当<br>レンチン</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg text-center w-1/3 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 bg-red-500 text-white px-3 py-1 font-bold text-sm">NG</div>
+                        <i class="fas fa-coffee text-6xl text-gray-400 mb-4"></i>
+                        <p class="text-2xl font-bold">紙コップで<br>ホットコーヒー</p>
+                        <p class="text-sm text-gray-400 mt-2">※内側コーティング</p>
+                    </div>
+                </div>
+                <div class="mt-8 bg-yellow-100 px-6 py-3 rounded-full text-xl font-bold text-yellow-800">
+                    <i class="fas fa-truck text-yellow-600 mr-2"></i> ペットボトルの輸送中も高温注意！
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Route 2 - Clothes -->
+        <div class="slide bg-gray-50">
+            <h2 class="absolute top-8 left-8 text-3xl font-bold border-l-8 border-indigo-600 pl-4">侵入ルート②：服（盲点！）</h2>
+            <div class="flex items-center gap-12">
+                <div class="relative">
+                    <i class="fas fa-tshirt text-9xl text-indigo-200"></i>
+                    <i class="fas fa-tint text-6xl text-blue-500 absolute bottom-0 right-0 animate-bounce"></i>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <h3 class="text-4xl font-black text-indigo-900">運動中の「化学繊維」</h3>
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-2 border-indigo-100">
+                        <div class="flex items-center text-2xl font-bold mb-2">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded mr-3 text-lg">汗（油分）</span>
+                            <i class="fas fa-plus text-gray-400 mx-2"></i>
+                            <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded mr-3 text-lg">ポリエステル</span>
+                        </div>
+                        <i class="fas fa-arrow-down text-4xl text-gray-300 my-2 block text-center"></i>
+                        <p class="text-3xl font-black text-red-600">皮膚から再吸収</p>
+                        <p class="text-gray-500 mt-2 text-lg">※バーミンガム大学の研究</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Solution - Don't Enter -->
+        <div class="slide bg-green-50">
+            <div class="absolute top-0 left-0 w-full h-4 bg-green-500"></div>
+            <h2 class="text-4xl font-black text-green-700 mb-10">対策①：入れない工夫</h2>
+            <div class="grid grid-cols-2 gap-12 w-full max-w-5xl px-8">
+                <!-- Action 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center border-b-8 border-green-500">
+                    <div class="bg-green-100 rounded-full p-6 mb-4">
+                        <i class="fas fa-utensils text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">温めは移し替える</h3>
+                    <p class="text-xl text-gray-600 text-center">
+                        レンチンは必ず<br>
+                        <span class="text-green-600 font-bold underline">ガラス・陶器</span>で！
+                    </p>
+                </div>
+                <!-- Action 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg flex flex-col items-center border-b-8 border-green-500">
+                    <div class="bg-green-100 rounded-full p-6 mb-4">
+                        <i class="fas fa-tshirt text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-2">汗をかくなら綿</h3>
+                    <p class="text-xl text-gray-600 text-center">
+                        肌着や運動着は<br>
+                        <span class="text-green-600 font-bold underline">天然素材（コットン）</span>を選ぶ
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Solution - Detox -->
+        <div class="slide bg-blue-50">
+            <div class="absolute top-0 left-0 w-full h-4 bg-blue-500"></div>
+            <h2 class="text-4xl font-black text-blue-700 mb-10">対策②：出す力（デトックス）</h2>
+            <div class="flex w-full max-w-5xl gap-8 px-8">
+                <div class="w-1/2 flex flex-col justify-center space-y-8">
+                    <div class="flex items-center bg-white p-6 rounded-xl shadow-md">
+                        <i class="fas fa-glass-whiskey text-5xl text-blue-400 mr-6"></i>
+                        <div>
+                            <p class="text-2xl font-bold">水を飲む</p>
+                            <p class="text-gray-500">尿として排出</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center bg-white p-6 rounded-xl shadow-md border-2 border-red-200">
+                        <i class="fas fa-poo text-5xl text-yellow-600 mr-6"></i>
+                        <div>
+                            <p class="text-2xl font-bold text-red-600">便秘は絶対NG</p>
+                            <p class="text-gray-500">腸から再吸収されてしまう</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center">
+                    <i class="fas fa-shield-alt text-8xl text-blue-600 mb-6"></i>
+                    <h3 class="text-4xl font-black text-blue-800 mb-4">「快便」が最強の盾</h3>
+                    <p class="text-xl text-center text-gray-600">
+                        入ってしまったものを<br>
+                        素早く外に出す体を作る
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Conclusion -->
+        <div class="slide bg-white">
+            <h2 class="text-5xl font-black mb-12 text-center">1年後、体は変わる</h2>
+            <div class="flex items-end justify-center gap-4 h-64 w-full px-12">
+                <div class="w-1/3 bg-gray-200 h-1/2 rounded-t-lg flex flex-col justify-center items-center text-gray-500">
+                    <span class="text-xl font-bold mb-2">対策なし</span>
+                    <i class="fas fa-arrow-up"></i>
+                    <span>蓄積</span>
+                </div>
+                <div class="w-1/3 bg-green-500 h-full rounded-t-lg flex flex-col justify-center items-center text-white shadow-2xl transform scale-105">
+                    <span class="text-3xl font-bold mb-4">対策あり</span>
+                    <i class="fas fa-check-circle text-6xl mb-4"></i>
+                    <span class="text-xl">炎症リスク減</span>
+                    <span class="text-xl">健康維持</span>
+                </div>
+            </div>
+            <p class="mt-12 text-2xl font-bold text-center text-gray-700">
+                完璧じゃなくていい。<br>
+                <span class="text-blue-600">今日の一杯の水、一枚の服</span>から始めよう。
+            </p>
+            <p class="mt-8 text-lg text-gray-400">
+                
+            </p>
+        </div>
+
+    </div>
+    
+    <p class="text-gray-500 mt-4 text-sm">※左右の矢印キーでも操作できます</p>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicator = document.getElementById('slide-indicator');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            indicator.innerText = `${index + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
